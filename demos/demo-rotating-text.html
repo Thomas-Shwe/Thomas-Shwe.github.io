@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Text Demo</title>
+    <style>
+        body {
+            background-color: #00000b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .hero {
+            color: aliceblue;
+            font-size: 4vw;
+        }
+
+        .container {
+            position: relative;
+            font-family: monospace;
+            filter: contrast(15);
+        }
+
+        .word {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: switch 8s infinite ease-in-out;
+            min-width: 100%;
+            margin: auto;
+        }
+
+        .word:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .word:nth-child(2) {
+            animation-delay: -4s;
+        }
+
+        @keyframes switch {
+
+            0%,
+            5%,
+            100% {
+                filter: blur(0px);
+                opacity: 1;
+            }
+
+            50%,
+            80% {
+                filter: blur(180px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h3>Rotating Text Demo</h3>
+        <div>
+            Lorem ipsum dolor <br>
+            sit amet,
+        </div>
+        <br>
+        <div class="container">
+            <div class="word">consectetur</div>
+            <div class="word">adipiscing</div>
+        </div>
+    </div>
+</body>
+
+</html>
