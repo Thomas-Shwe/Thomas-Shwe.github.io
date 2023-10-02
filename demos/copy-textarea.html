@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Copy Buttons</title>
+    <style>
+        body {
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background-color: #181818;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin: 10px;
+            /* background-color: #4a4a4a;
+            border: 1px solid #000000; */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 200px;
+            height: 500px;
+        }
+
+        .container button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 80%;
+            height: 10%
+        }
+
+        .container button.delete-button {
+            background-color: transparent;
+        }
+
+        .container button.delete-button:hover {
+            background-color: #DC3545;
+        }
+
+        /* .container button.copy-button {
+            background-color: #28A745;
+        } */
+
+        .container button:hover {
+            background-color: #0056b3;
+        }
+
+        .container textarea {
+            padding: 10px;
+            border: none;
+            width: 90%;
+            height: 85%;
+            overflow: auto;
+            resize: none;
+            /* Add a scrollbar when necessary */
+
+        }
+
+        #dashboard {
+            margin: 10px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            min-height: 150px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="add-button">Add</button>
+        <button id="delete-all-button" class="delete-button">Delete All</button>
+    </div>
+
+    <script>
+        // Create a copy button, textarea, and delete button
+        function createCopyButton() {
+            const container = document.createElement('div');
+            container.classList.add('container', 'copy-container');
+
+            // const copyButton = document.createElement('button');
+            // copyButton.textContent = 'Copy';
+            // copyButton.classList.add('copy-button');
+
+            const textarea = document.createElement('textarea');
+            textarea.type = 'text';
+            textarea.placeholder = 'Enter text';
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.classList.add('delete-button');
+
+            // container.appendChild(copyButton);
+            container.appendChild(textarea);
+            container.appendChild(deleteButton);
+
+            return container;
+        }
+
+        // Add a copy button when the "Add Button" is clicked
+        document.getElementById('add-button').addEventListener('click', function () {
+            const copyButtonContainer = createCopyButton();
+            document.body.insertBefore(copyButtonContainer, document.getElementById('dashboard'));
+
+            // Add functionality to the copy button
+            // const copyButton = copyButtonContainer.querySelector('.copy-button');
+            const textarea = copyButtonContainer.querySelector('textarea');
+            const deleteButton = copyButtonContainer.querySelector('.delete-button');
+
+            // copyButton.addEventListener('click', function () {
+            //     const copyText = textarea.value;
+            //     navigator.clipboard.writeText(copyText);
+            //     textarea.select();
+            // });
+
+            textarea.addEventListener('click', function () {
+                const copyText = textarea.value;
+                navigator.clipboard.writeText(copyText);
+                textarea.select();
+            });
+
+            // Add functionality to the delete button
+            deleteButton.addEventListener('click', function () {
+                copyButtonContainer.remove();
+            });
+        });
+
+        // Delete all copy buttons when the "Delete All" button is clicked
+        document.getElementById('delete-all-button').addEventListener('click', function () {
+            const copyButtonContainers = document.querySelectorAll('.copy-container');
+            copyButtonContainers.forEach(function (container) {
+                container.remove();
+            });
+        });
+    </script>
+</body>
+
+</html>
