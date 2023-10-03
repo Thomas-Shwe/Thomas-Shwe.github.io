@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -94,9 +93,9 @@
             const container = document.createElement('div');
             container.classList.add('container', 'copy-container');
 
-            // const copyButton = document.createElement('button');
-            // copyButton.textContent = 'Copy';
-            // copyButton.classList.add('copy-button');
+            const copyButton = document.createElement('button');
+            copyButton.textContent = 'Copy';
+            copyButton.classList.add('copy-button');
 
             const textarea = document.createElement('textarea');
             textarea.type = 'text';
@@ -106,7 +105,7 @@
             deleteButton.textContent = 'Delete';
             deleteButton.classList.add('delete-button');
 
-            // container.appendChild(copyButton);
+            container.appendChild(copyButton);
             container.appendChild(textarea);
             container.appendChild(deleteButton);
 
@@ -119,19 +118,19 @@
             document.body.insertBefore(copyButtonContainer, document.getElementById('dashboard'));
 
             // Add functionality to the copy button
-            // const copyButton = copyButtonContainer.querySelector('.copy-button');
+            const copyButton = copyButtonContainer.querySelector('.copy-button');
             const textarea = copyButtonContainer.querySelector('textarea');
             const deleteButton = copyButtonContainer.querySelector('.delete-button');
 
-            // copyButton.addEventListener('click', function () {
-            //     const copyText = textarea.value;
-            //     navigator.clipboard.writeText(copyText);
-            //     textarea.select();
-            // });
+            copyButton.addEventListener('click', function () {
+                const copyText = textarea.value;
+                navigator.clipboard.writeText(copyText);
+                textarea.select();
+            });
 
             textarea.addEventListener('click', function () {
                 const copyText = textarea.value;
-                navigator.clipboard.writeText(copyText);
+                // navigator.clipboard.writeText(copyText);
                 textarea.select();
             });
 
